@@ -1,3 +1,4 @@
+
 #Encabezado{
     position: absolute;
     top: 0;
@@ -9,7 +10,7 @@
 
 }
 
-#Encabezado H1{
+#Encabezado h1{
     display: inline;
 }
 #menu{
@@ -48,7 +49,7 @@
     width: 80%;
     background-color: #24a1df;
     color: black;
-    overflow:auto;
+    
 }
 #piePagina{
     position: absolute;
