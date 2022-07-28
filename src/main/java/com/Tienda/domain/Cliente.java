@@ -1,6 +1,5 @@
 
 package com.Tienda.domain;
-
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -29,7 +28,7 @@ public class Cliente implements Serializable{
         
     }
 
-    public Cliente(String nombre, String apellidos, String correo, String telefon) {
+    public Cliente(String nombre, String apellidos, String correo, String telefono) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;

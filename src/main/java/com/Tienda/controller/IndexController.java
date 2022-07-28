@@ -1,8 +1,6 @@
 package com.Tienda.controller;
-
-import com.Tienda.dao.ClienteDao;
 import com.Tienda.domain.Cliente;
-import java.util.Arrays;
+import com.Tienda.service.ClienteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class IndexController {
     
     @Autowired
-    private ClienteDao clienteDao;
+    private ClienteService clienteService;
     @GetMapping("/")
     public String inicio(Model model){
         log.info("Ahora se usa arquitectura MVC");
@@ -25,11 +23,33 @@ public class IndexController {
 //          
 //          Cliente cliente2 = new Cliente("Juan","Lopez","Jbrenes@gmail.com","8820-2655");
 //          var clientes  = Arrays.asList(cliente,cliente2);
-            var clientes = clienteDao.findAll();
-           model.addAttribute("clientes", clientes);
+            
+          
+           var clientes = clienteService.getClientes();
            
+            model.addAttribute("clientes", clientes);
           return "index";
         
     }
+    @GetMapping("/nuevoCliente")
+    public String nuevoCliente(Cliente cliente){
+        return "modificarCliente";
+    }
     
+    @PostMapping("/guardarCliente")
+    public String guardarCliente(Cliente cliente){
+    clienteService.save(cliente);
+    return "redirect:/";
+    }
+     @GetMapping("/modificarCliente/{idCliente}")
+     public String modificarCliente(Cliente cliente, Model model){
+         cliente = clienteService.getCliente(cliente);
+         model.addAttribute("cliente",cliente);
+         return "modificarCliente";
+     }
+     @GetMapping("/eliminarCliente/{idCliente}")
+    public String eliminarCliente(Cliente cliente){
+        clienteService.delete(cliente);
+        return "redirect:/";
+ }
 }
