@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TeachShop</title>
+        <meta charset="UTF-8">
+            <link rel="stylesheet" th:href="@{/css/estilos.css}"/>    
+    </head>
+    <body>
+        <div class="contenido">  
+            <h1>Datos Articulo</h1>
+            <a th:href="@{/articulo/listado}">Regresar</a>
+            <br>
+                <br>
+                    <form th:action="@{/articulo/guardar}"
+                          method="post"
+                          th:object="${articulo}">
+                        <input type="hidden" name="idArticulo" th:field="*{idArticulo}"/>
+                        <label for="categoria">Categoria:</label>
+                        <select th:field="*{idCategoria}">
+                            <option th:each="categoria : ${categorias}"
+                                    th:value="${categoria.idCategoria}"
+                                    th:text="${categoria.descripcion}"/>
+                        </select>
+                        <br/>
+                        <label for="descripcion">Descripcion:</label>
+                        <input type="text" id="descripcion" name="descripcion" th:field="*{descripcion}"/>
+                        <br>
+
+                            <label for="detalle">detalle</label>
+                            <input type="text" id="detalle" name="precio" th:field="*{detalle}" />
+                            <br>
+
+                                <label for="precio">Correo:</label>
+                                <input type="number" id="precio" name="precio" th:field="*{precio}"/> 
+                                <br>
+
+                                    <label for="existencias">Telefono</label>
+                                    <input type="number" id="existencias" name="existencias" th:field="*{existencias}">
+                                        <br>
+                                            <label for="activo">Litemete de credito</label>
+                                            <input type="checkbox" id="activo" name="activo" th:field="*{activo}">
+                                                <br>
+                                                    <input type="submit" name="Guardar" value="Guardar"/>
+                                                    </form> 
+                                                    </div>
+                                                    <footer th:replace="layout/plantilla :: footer" />
+                                                    </body>
+                                                    </html>
+
